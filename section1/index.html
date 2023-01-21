@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <!-- リアル DOM -->
+  <a id="google_link">googleへのリンク</a>
+
+  <!-- 仮想 DOM -->
+  <div id="app">
+    {{ message }}
+    <a v-bind:href="google">googleへのリンク</a>
+    <br>
+    <!-- 省略形 -->
+    <a :href="google">googleへのリンク</a>
+    <br>
+    <a :href="book.url">{{ book.title }}</a>
+    <br>
+  </div>
+</body>
+
+<script>
+  // =======
+  // 直接 DOM 操作
+  // =======
+
+  // id を指定(idが変わればコード変更が必要)
+  const googleLink = document.getElementById('google_link');
+  googleLink.href = 'https://google.com';
+
+  // =======
+  // 仮想 DOM 操作
+  // =======
+
+  // Vue クラス => インスタンス化（実体） new
+  let app = new Vue({
+    el: '#app', // 仮想DOM
+    data: function () { // 初期設定
+      // data() 省略可
+      return {
+        message: 'Hello',
+        google: 'https://google.com',
+        book: {
+          title: '本のタイトル',
+          url: 'https://google.com'
+        },
+      }
+    }
+  })
+</script>
+
+</html>

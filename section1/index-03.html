@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button v-on:click="btnClicked">クリック</button>
+    <button @click="btnClicked">クリック</button>
+
+    <button @click="btnClickedEvent">event クリック</button>
+    <button @click="btnClickedArgs(1)">引数 クリック</button>
+    <button @click="btnClickedArgsEvent(1, $event)">引数 イベントクリック</button>
+
+    <form>
+
+    </form>
+  </div>
+</body>
+
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+
+      }
+    },
+    methods: {
+      btnClicked() {
+        console.log('Vue クリック');
+      },
+      btnClickedEvent(e) {
+        console.log(e);
+      },
+      btnClickedArgs(int) {
+        console.log(int);
+      },
+      btnClickedArgsEvent(int, e) {
+        console.log(int, e);
+      }
+    }
+  })
+</script>
+
+</html>

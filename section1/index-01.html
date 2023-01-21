@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <div v-show="isDisplay">true</div>
+    <div v-show="!isDisplay">false</div>
+
+    <div v-if="isDisplay">if で表示</div>
+
+    <div v-if="signal === 'red'">赤</div>
+    <div v-else-if="signal === 'yellow'">黄色</div>
+    <div v-else-if="signal === 'blue'">青</div>
+    <div v-else>赤青黄ではありません</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>タイトル</th>
+          <th>著者名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="book in books" :key="book.id">
+          <td>{{ book.id }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        isDisplay: true,
+        signal: 'red',
+        books: [
+          {
+            id: 1,
+            title: "タイトル",
+            author: "著者名",
+          },
+          {
+            id: 2,
+            title: "タイトル2",
+            author: "著者名2",
+
+          },
+          {
+            id: 3,
+            title: "タイトル3",
+            author: "著者名3",
+          }
+        ]
+      }
+    }
+  })
+</script>
+
+</html>
