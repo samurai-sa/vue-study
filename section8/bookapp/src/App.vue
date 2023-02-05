@@ -1,11 +1,12 @@
 <template>
   <v-app>
-    <Header/>
+    <Header @delete-local-storage="deleteLocalStorage"/>
     <v-main>
       <v-container>
         <router-view
         :books="books"
-        @add-book-list="addBook"/>
+        @add-book-list="addBook"
+        @update-book-info="updateBookInfo"/>
       </v-container>
     </v-main>
     <Footer/>
@@ -21,7 +22,7 @@ export default {
   components: { Header ,Footer },
   name: 'App',
 
-  data(){
+  data() {
    return {
       books: [],
       newBook: null
@@ -46,7 +47,6 @@ export default {
         readDate: '',
         memo: ''
       });
-      // this.newBook = '';
       this.saveBooks();
 
       // 最後に追加した id の取得コード
@@ -60,8 +60,30 @@ export default {
       const parsed = JSON.stringify(this.books);
       localStorage.setItem(STORAGE_KEY, parsed);
     },
+    updateBookInfo(e) {
+      const updateInfo = {
+        id: e.id,
+        title: this.books[e.id].title,
+        image: this.books[e.id].image,
+        description: this.books[e.id].description,
+        readDate: e.readDate,
+        memo: e.memo,
+      }
+      this.books.splice(e.id, 1, updateInfo);
+      this.saveBooks();
+      this.$router.push('/');
+    },
     goToEditPage(id) {
       this.$router.push(`/edit/${id}`);
+    },
+    deleteLocalStorage() {
+      const isDeleted = 'LocalStorage のデータを削除してもよろしいですか。';
+      if (window.confirm(isDeleted)) {
+        localStorage.setItem(STORAGE_KEY, '');
+        localStorage.removeItem(STORAGE_KEY);
+        this.books = [];
+        window.location.reload();
+      }
     }
   }
 };
