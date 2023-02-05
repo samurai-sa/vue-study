@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import BookIndex from '@/pages/BookIndex'
 import BookSearch from '@/pages/BookSearch'
 import BookEdit from '@/pages/BookEdit'
+import BookDetail from '@/pages/BookDetail'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/search',
     name: 'BookSearch',
     component: BookSearch
+  },
+  {
+    path: '/book/:id',
+    name: 'BookDetail',
+    component: BookDetail
   },
   {
     path: '/edit/:id',

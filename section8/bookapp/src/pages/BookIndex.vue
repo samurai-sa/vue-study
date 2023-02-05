@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col cols="12" sm="6" v-for="book in books" :key="book.id">
-        <v-card>
+        <v-card @click="goToDetail(book.id)">
           <v-row>
             <v-col cols="4">
               <v-img :src="book.image"></v-img>
@@ -35,6 +35,9 @@
 export default {
   name: 'BookIndex',
   methods: {
+    goToDetail(id) {
+      this.$router.push(`/book/${id}`);
+    }
   },
   props:{
     books:Array
