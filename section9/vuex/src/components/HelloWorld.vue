@@ -13,17 +13,24 @@ export default {
     msg: String
   },
   methods: {
+    // increment() {
+    //   this.$store.commit('increment');
+    // },
+    // removeCount() {
+    //   this.$store.commit('decrement');
+    // },
+    // addCount() {
+    //   this.$store.commit('addCount', {
+    //     value: 10
+    //   })
+    // }
     increment() {
-      this.$store.commit('increment');
-    },
-    removeCount() {
-      this.$store.commit('decrement');
+      this.$store.dispatch('incrementAction');
     },
     addCount() {
-      this.$store.commit('addCount', {
-        value: 10
-      })
-    }
+      this.$store.dispatch('addCountAction', {value: 10});
+    },
+
   }
 }
 </script>
