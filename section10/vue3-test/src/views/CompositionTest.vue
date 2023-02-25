@@ -34,10 +34,10 @@ export default {
       author: ['大谷2', '伊藤2']
     })
 
-    console.log('setup');
-    console.log(this);
-    console.log(nameRef);
-    console.log(nameRef.value);
+    // console.log('setup');
+    // console.log(this);
+    // console.log(nameRef);
+    // console.log(nameRef.value);
     return { name, age, nameRef, book, ...toRefs(bookToRefs) }
   },
   data() {
@@ -47,12 +47,12 @@ export default {
     }
   },
   created() {
-    console.log('created');
-    console.log(this);
+    // console.log('created');
+    // console.log(this);
   },
   mounted() {
-    console.log('mouted');
-    console.log(this);
+    // console.log('mouted');
+    // console.log(this);
   }
 }
 </script>
